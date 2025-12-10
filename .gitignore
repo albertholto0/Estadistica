@@ -1,0 +1,8 @@
+# Ignorar todo
+*
+
+# Excepto graficar_funcion.py
+!graficar_funcion.py
+
+# No ignorar .gitignore
+!.gitignore
