@@ -3,6 +3,7 @@
 
 # Excepto graficar_funcion.py
 !graficar_funcion.py
+!sobol.py
 
 # No ignorar .gitignore
 !.gitignore
