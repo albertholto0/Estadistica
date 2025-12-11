@@ -8,13 +8,11 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.qmc.Sobol.html
 
 
 while True:
-    try:
-        n = int(input("Cantidad de puntos a generar [n]: "))
-        if n <= 0:
-            print("Por favor, ingresa un número entero positivo.")
-            break
-    except ValueError:
-        print("Entrada inválida. Ingrese un número entero.")
+    n = int(input("Cantidad de puntos aleatorios a generar (entero positivo): "))
+    if n <= 0:
+        print("Por favor, ingresa un número entero positivo.")
+    else:
+        break
 
 # "d" es el numero de dimensiones
 # "scramble=True" para mayor aleatoriedad
