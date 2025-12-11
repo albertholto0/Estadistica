@@ -25,7 +25,9 @@ print(numeros_aleatorios)
 numeros_aleatorios_np = np.random.rand(n, 2)
 
 # Crear figura con dos subgráficas lado a lado
+
 fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+fig.canvas.manager.set_window_title('Comparación de Números Aleatorios: Sobol vs NumPy')
 
 # Gráfica 1: Sobol
 ax1.scatter(numeros_aleatorios[:, 0], numeros_aleatorios[:, 1], s=20, alpha=0.6, color='blue')
