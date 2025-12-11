@@ -7,29 +7,43 @@ https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.qmc.Sobol.html
 """
 
 
-def evaluarInput(prompt):
-    while True:
-        try:
-            n = int(input(prompt))
-            if n <= 0:
-                print("Por favor, ingresa un número entero positivo.")
-                continue
-            return n
-        except ValueError:
-            print("Entrada inválida. Ingrese un número entero.")
+while True:
+    try:
+        n = int(input("Cantidad de puntos a generar [n]: "))
+        if n <= 0:
+            print("Por favor, ingresa un número entero positivo.")
+            break
+    except ValueError:
+        print("Entrada inválida. Ingrese un número entero.")
 
-n = evaluarInput("[n]: ")
 # "d" es el numero de dimensiones
 # "scramble=True" para mayor aleatoriedad
 numeros_aleatorios = qmc.Sobol(d=2, scramble=True).random(n)
+
 np.set_printoptions(precision=3, suppress=True)
 print(numeros_aleatorios)
 
-# Graficar los puntos
-plt.scatter(numeros_aleatorios[:, 0], numeros_aleatorios[:, 1], s=20, alpha=0.6)
-plt.xlabel('x')
-plt.ylabel('y')
-plt.title(f'Puntos generados con Sobol (n={n})')
-plt.grid(True)
-plt.axis('equal')
+# Generacion de números aleatorios con Numpy, para comparar
+numeros_aleatorios_np = np.random.rand(n, 2)
+
+# Crear figura con dos subgráficas lado a lado
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
+
+# Gráfica 1: Sobol
+ax1.scatter(numeros_aleatorios[:, 0], numeros_aleatorios[:, 1], s=20, alpha=0.6, color='blue')
+ax1.set_xlabel('x')
+ax1.set_ylabel('y')
+ax1.set_title(f'Sobol (n={n})')
+ax1.grid(True)
+ax1.axis('equal')
+
+# Gráfica 2: NumPy random
+ax2.scatter(numeros_aleatorios_np[:, 0], numeros_aleatorios_np[:, 1], s=20, alpha=0.6, color='red')
+ax2.set_xlabel('x')
+ax2.set_ylabel('y')
+ax2.set_title(f'NumPy random (n={n})')
+ax2.grid(True)
+ax2.axis('equal')
+
+plt.tight_layout()
 plt.show()
